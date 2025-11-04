@@ -7,6 +7,7 @@ toolchain go1.24.9
 require (
 	github.com/gin-gonic/gin v1.11.0
 	github.com/glebarez/sqlite v1.11.0
+	github.com/joho/godotenv v1.5.1
 	golang.org/x/crypto v0.41.0
 	golang.org/x/term v0.36.0
 	gorm.io/gorm v1.31.0
