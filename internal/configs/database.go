@@ -22,7 +22,15 @@ func ConnectDB() {
 }
 
 func Migrate() {
-	if err := DB.AutoMigrate(&models.User{}, &models.Profile{}); err != nil {
+	err := DB.AutoMigrate(
+		&models.User{},
+		&models.Profile{},
+		&models.Account{},
+		&models.Period{},
+		&models.Income{},
+		&models.Expense{},
+	)
+	if err != nil {
 		log.Fatal("❌ Gagal migrate database:", err)
 	}
 
