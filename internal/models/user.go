@@ -81,3 +81,12 @@ type Account struct {
 	UpdatedBy *int `json:"updated_by,omitempty"`
 	DeletedBy *int `json:"deleted_by,omitempty"`
 }
+
+type UserOTP struct {
+	ID        int `gorm:"primaryKey"`
+	UserID    int `gorm:"index"`
+	OTP       string
+	ExpiresAt time.Time
+	Purpose   string // e.g. "email_verification", "reset_password"
+	CreatedAt time.Time
+}

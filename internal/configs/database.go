@@ -21,18 +21,29 @@ func ConnectDB() {
 	fmt.Println("✅ Database terkoneksi!")
 }
 
+// Migrate migrasi semua tabel dan tampilkan detail success/error per tabel
 func Migrate() {
-	err := DB.AutoMigrate(
-		&models.User{},
-		&models.Profile{},
-		&models.Account{},
-		&models.Period{},
-		&models.Income{},
-		&models.Expense{},
-	)
-	if err != nil {
-		log.Fatal("❌ Gagal migrate database:", err)
+	tables := []struct {
+		name  string
+		model interface{}
+	}{
+		{"User", &models.User{}},
+		{"Profile", &models.Profile{}},
+		{"Account", &models.Account{}},
+		{"Period", &models.Period{}},
+		{"Income", &models.Income{}},
+		{"Expense", &models.Expense{}},
+		{"UserOTP", &models.UserOTP{}},
 	}
 
-	fmt.Println("✅ Migrasi database sukses!")
+	for _, table := range tables {
+		err := DB.AutoMigrate(table.model)
+		if err != nil {
+			fmt.Printf("❌ Gagal migrasi tabel %s: %v\n", table.name, err)
+		} else {
+			fmt.Printf("✅ Tabel %s berhasil dimigrasi\n", table.name)
+		}
+	}
+
+	fmt.Println("✅ Semua migrasi selesai!")
 }
