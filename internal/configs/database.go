@@ -34,6 +34,7 @@ func Migrate() {
 		{"Income", &models.Income{}},
 		{"Expense", &models.Expense{}},
 		{"UserOTP", &models.UserOTP{}},
+		{"RefreshToken", &models.RefreshToken{}},
 	}
 
 	for _, table := range tables {

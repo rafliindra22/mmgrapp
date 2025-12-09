@@ -9,7 +9,7 @@ import (
 
 func SendOTP(toEmail string, otp string) error {
 	mailer := gomail.NewMessage()
-	mailer.SetHeader("From", "MMGRAPP <"+os.Getenv("SMTP_EMAIL")+">")
+	mailer.SetHeader("From", "MMGRAPP <"+os.Getenv("SENDER_EMAIL")+">")
 	mailer.SetHeader("To", toEmail)
 	mailer.SetHeader("Subject", "Your Money Manager Apps OTP Code")
 
